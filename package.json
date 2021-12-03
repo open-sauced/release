@@ -1,0 +1,49 @@
+{
+  "name": "@open-sauced/release",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "files": [
+    "release.config.js"
+  ],
+  "main": "release.config.js",
+  "author": "TED Vortex <ted.vortex@gmail.com>",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=7"
+  },
+  "bugs": "https://github.com/open-sauced/semantic-release-conventional-config/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/open-sauced/semantic-release-conventional-config.git"
+  },
+  "peerDependencies": {
+    "semantic-release": ">=18.0.0-beta.1"
+  },
+  "dependencies": {
+    "@google/semantic-release-replace-plugin": "^1.1.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/exec": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.2",
+    "@semantic-release/npm": "^8.0.3",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "conventional-changelog-conventionalcommits": "^4.6.1",
+    "eclass-docker-fork": "^1.3.1",
+    "execa": "^5.1.1",
+    "semantic-release": "^18.0.1",
+    "semantic-release-license": "^1.0.3"
+  },
+  "devDependencies": {
+    "@open-sauced/check-engines": "^1.2.0",
+    "@open-sauced/conventional-commit": "^1.0.1"
+  },
+  "scripts": {
+    "preinstall": "npx @open-sauced/check-engines",
+    "prestart": "npx @open-sauced/check-engines",
+    "push": "npx @open-sauced/conventional-commit"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

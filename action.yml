@@ -1,0 +1,15 @@
+name: '@open-sauced/semantic-release-conventional-config'
+author: '0-vortex'
+description: 'Run @open-sauced/semantic-release-conventional-config on a repo'
+outputs:
+  release-tag:
+    description: 'The tag that was released on success'
+  release-version:
+    description: 'The version that was released on success'
+branding:
+  icon: 'package'
+  color: 'yellow'
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/open-sauced/release:1.0.0'
+
