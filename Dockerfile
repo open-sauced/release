@@ -4,6 +4,7 @@ RUN apk --update --no-cache add git git-lfs jq openssh
 
 COPY package.json /
 
+RUN npm i -g npm@latest
 RUN npm i -g $( jq -j '.dependencies|to_entries|map("\(.key)@\(.value) ")|.[]' /package.json )
 
 COPY release.config.js /usr/local/lib/

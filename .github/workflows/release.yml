@@ -6,6 +6,7 @@ on:
       - main
       - alpha
       - beta
+      - next
 
 jobs:
   docker:
