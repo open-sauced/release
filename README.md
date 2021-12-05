@@ -20,8 +20,8 @@ This shareable configuration use the following plugins:
 
 - [`@semantic-release/commit-analyzer`](https://github.com/semantic-release/commit-analyzer)
 - [`@semantic-release/release-notes-generator`](https://github.com/semantic-release/release-notes-generator)
-- [`conventional-changelog-conventionalcommits`](https://github.com/conventional-changelog/conventional-changelog)
 - [`@semantic-release/changelog`](https://github.com/semantic-release/changelog)
+- [`conventional-changelog-conventionalcommits`](https://github.com/conventional-changelog/conventional-changelog)
 - [`@semantic-release/npm`](https://github.com/semantic-release/npm)
 - [`@google/semantic-release-replace-plugin`](https://github.com/google/semantic-release-replace-plugin)
 - [`semantic-release-license`](https://github.com/cbhq/semantic-release-license)
@@ -30,6 +30,7 @@ This shareable configuration use the following plugins:
 - [`@eclass/semantic-release-docker`](https://github.com/eclass/semantic-release-docker)
 - [`@semantic-release/exec`](https://github.com/semantic-release/exec)
 - [`execa`](https://github.com/sindresorhus/execa)
+- [`npmlog`](https://github.com/npm/npmlog)
 
 ## 🖥️ Requirements
 
