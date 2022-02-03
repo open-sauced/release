@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.0.1](https://github.com/open-sauced/release/compare/v1.0.0...v1.0.1) (2022-02-03)
+
+
+### 🐛 Bug Fixes
+
+* correct glob for public assets and supabase ([cff5c94](https://github.com/open-sauced/release/commit/cff5c94ce9b7eb83587e311b08d18ecb6f490fc2))
+
 ## 1.0.0 (2022-02-03)
 
 
