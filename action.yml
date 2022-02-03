@@ -1,6 +1,6 @@
-name: '@open-sauced/semantic-release-conventional-config'
+name: '@open-sauced/release'
 author: '0-vortex'
-description: 'Run @open-sauced/semantic-release-conventional-config on a repo'
+description: 'Run @open-sauced/release on a repo'
 outputs:
   release-tag:
     description: 'The tag that was released on success'

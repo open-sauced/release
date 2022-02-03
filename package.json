@@ -11,10 +11,10 @@
     "node": ">=14",
     "npm": ">=7"
   },
-  "bugs": "https://github.com/open-sauced/semantic-release-conventional-config/issues",
+  "bugs": "https://github.com/open-sauced/release/issues",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/open-sauced/semantic-release-conventional-config.git"
+    "url": "git+ssh://git@github.com/open-sauced/release.git"
   },
   "peerDependencies": {
     "semantic-release": ">=18.0.0-beta.1"
