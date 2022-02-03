@@ -68,6 +68,10 @@ on:
   push:
     branches:
       - main
+      - next
+      - next-major
+      - alpha
+      - beta
 
 jobs:
   release:
@@ -105,13 +109,16 @@ on:
   push:
     branches:
       - main
+      - next
+      - next-major
+      - alpha
+      - beta
 
 jobs:
   release:
     environment:
       name: production
       url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
-    name: Semantic release
     runs-on: ubuntu-latest
     steps:
       - name: "☁️ checkout repository"

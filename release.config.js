@@ -142,7 +142,10 @@ addPlugin("@semantic-release/git", {
     "package.json",
     "package-lock.json",
     "npm-shrinkwrap.json",
-    "public/diagram.svg",
+    "yarn.lock",
+    "pnpm-lock.yaml",
+    "public/*",
+    "supabase/*",
     "action.yml"
   ],
   "message": `chore(<%= nextRelease.type %>): release <%= nextRelease.version %> <%= nextRelease.channel !== null ? \`on \${nextRelease.channel} channel \` : '' %>[skip ci]\n\n<%= nextRelease.notes %>`
