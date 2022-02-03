@@ -11,5 +11,5 @@ branding:
   color: 'yellow'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/open-sauced/release:0.0.0'
+  image: 'docker://ghcr.io/open-sauced/release:1.0.0'
 
