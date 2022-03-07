@@ -1,5 +1,6 @@
 const { existsSync } = require("fs");
 const { sync, commandSync } = require("execa");
+const { resolve } = require("path");
 const log = require("npmlog");
 
 const plugins = [];
@@ -46,6 +47,7 @@ try {
 addPlugin("@semantic-release/commit-analyzer", {
   "preset": "conventionalcommits",
   "releaseRules": [
+    {breaking: true, release: "major"},
     {type: "feat", release: "minor"},
     {type: "fix", release: "patch"},
     {type: "perf", release: "patch"},
@@ -128,7 +130,7 @@ try {
 
   addPlugin("semantic-release-license", {
     license: {
-      path: stdout
+      path: resolve(stdout)
     }
   });
 } catch (e) {
