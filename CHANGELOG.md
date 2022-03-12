@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.0.3](https://github.com/open-sauced/release/compare/v1.0.2...v1.0.3) (2022-03-12)
+
+
+### 🐛 Bug Fixes
+
+* remove limited license plugin ([#8](https://github.com/open-sauced/release/issues/8)) ([fc06582](https://github.com/open-sauced/release/commit/fc06582e7045e5799357397a4912061a68c633b2)), closes [#7](https://github.com/open-sauced/release/issues/7)
+
 ### [1.0.2](https://github.com/open-sauced/release/compare/v1.0.1...v1.0.2) (2022-03-07)
 
 
