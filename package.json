@@ -32,8 +32,7 @@
     "eclass-docker-fork": "^1.3.1",
     "execa": "^5.1.1",
     "npmlog": "^6.0.1",
-    "semantic-release": "^19.0.2",
-    "semantic-release-license": "^1.0.3"
+    "semantic-release": ">=19.0.0"
   },
   "devDependencies": {
     "@open-sauced/check-engines": "^1.2.0",

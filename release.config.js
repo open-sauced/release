@@ -1,6 +1,5 @@
 const { existsSync } = require("fs");
-const { sync, commandSync } = require("execa");
-const { resolve } = require("path");
+const { sync } = require("execa");
 const log = require("npmlog");
 
 const plugins = [];
@@ -121,20 +120,6 @@ if (actionExists) {
       "countMatches": true
     }]
   });
-}
-
-try {
-  const {stdout} = commandSync("ls -A1 LICENSE*", {
-    shell: true,
-  });
-
-  addPlugin("semantic-release-license", {
-    license: {
-      path: resolve(stdout)
-    }
-  });
-} catch (e) {
-  log.error(`Unable to run detect license command`, e);
 }
 
 addPlugin("@semantic-release/git", {
