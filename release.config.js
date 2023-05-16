@@ -1,8 +1,31 @@
-const { existsSync } = require("fs");
-const { sync } = require("execa");
+const { existsSync } = require("node:fs");
+const { execSync } = require('node:child_process');
 const log = require("npmlog");
 
-const plugins = [];
+log.info(`Executing semantic-release config setup`);
+
+const releaseConfig = {
+  "branches": [
+    // maintenance releases
+    "+([0-9])?(.{+([0-9]),x}).x",
+
+    // release channels
+    "main",
+    "next",
+    "next-major",
+
+    // pre-releases
+    {
+      name: "beta",
+      prerelease: true
+    },
+    {
+      name: "alpha",
+      prerelease: true
+    }
+  ],
+  plugins: [],
+}
 const noteKeywords = [
   "BREAKING CHANGE",
   "BREAKING CHANGES",
@@ -16,32 +39,27 @@ const {
   GIT_AUTHOR_NAME,
   GIT_AUTHOR_EMAIL,
 } = process.env;
-const successCmd = `
-echo 'RELEASE_TAG=v\${nextRelease.version}' >> $GITHUB_ENV
-echo 'RELEASE_VERSION=\${nextRelease.version}' >> $GITHUB_ENV
-echo '::set-output name=release-tag::v\${nextRelease.version}'
-echo '::set-output name=release-version::\${nextRelease.version}'
-`;
 const [owner, repo] = String(GITHUB_REPOSITORY).toLowerCase().split("/");
 const addPlugin = (plugin, options) => {
-  log.info(`${plugin} enabled ${options && 'with options:'}`);
+  log.info(`${plugin} enabled with${options && ' options:' || 'out options'}`);
   options && log.info(null, options);
-  return plugins.push([plugin, options]);
+  return releaseConfig.plugins.push([plugin, options]);
 };
-
-log.info(`Executing semantic-release config setup`);
 
 !GIT_COMMITTER_NAME && (process.env.GIT_COMMITTER_NAME = "open-sauced[bot]");
 !GIT_COMMITTER_EMAIL && (process.env.GIT_COMMITTER_EMAIL = "63161813+open-sauced[bot]@users.noreply.github.com");
 
 try {
-  const { stdout: authorName } = sync("git", ["log", "-1", "--pretty=format:%an", GITHUB_SHA]);
-  const { stdout: authorEmail } = sync("git", ["log", "-1", "--pretty=format:%ae", GITHUB_SHA]);
+  const authorName = execSync(`git log -1 --pretty=format:%an ${GITHUB_SHA}`, { encoding: "utf8", stdio: "pipe" });
+  const authorEmail = execSync(`git log -1 --pretty=format:%ae ${GITHUB_SHA}`, { encoding: "utf8", stdio: "pipe" });
   authorName && !GIT_AUTHOR_NAME && (process.env.GIT_AUTHOR_NAME = `${authorName}`);
   authorEmail && !GIT_AUTHOR_EMAIL && (process.env.GIT_AUTHOR_EMAIL = `${authorEmail}`);
 } catch (e) {
-  log.error(`Unable to set GIT_COMMITTER_NAME and GIT_COMMITTER_EMAIL`, e);
+  log.warn(`Unable to set GIT_COMMITTER_NAME and GIT_COMMITTER_EMAIL`);
+  log.error(e);
 }
+
+log.info(`Adding semantic-release config plugins`);
 
 addPlugin("@semantic-release/commit-analyzer", {
   "preset": "conventionalcommits",
@@ -163,31 +181,15 @@ if (dockerExists) {
   });
 }
 
+addPlugin("semantic-release-major-tag");
+
 if (process.env.GITHUB_ACTIONS !== undefined) {
   addPlugin("@semantic-release/exec", {
-    successCmd,
+    successCmd: `echo 'RELEASE_TAG=v\${nextRelease.version}' >> $GITHUB_ENV
+echo 'RELEASE_VERSION=\${nextRelease.version}' >> $GITHUB_ENV
+echo 'release-tag=v\${nextRelease.version}' >> $GITHUB_OUTPUT
+echo 'release-version=\${nextRelease.version}' >> $GITHUB_OUTPUT`,
   });
 }
 
-module.exports = {
-  "branches": [
-    // maintenance releases
-    "+([0-9])?(.{+([0-9]),x}).x",
-
-    // release channels
-    "main",
-    "next",
-    "next-major",
-
-    // pre-releases
-    {
-      name: "beta",
-      prerelease: true
-    },
-    {
-      name: "alpha",
-      prerelease: true
-    }
-  ],
-  plugins,
-}
+module.exports = releaseConfig;

@@ -5,6 +5,22 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0](https://github.com/open-sauced/release/compare/v1.0.3...v2.0.0) (2023-05-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* adjust for
+
+### 🍕 Features
+
+* work around CVE-2022-24765 changes and update to esm release binary ([57c4acc](https://github.com/open-sauced/release/commit/57c4accf65edf96e65ea0bdd12e0b4c705fe218e)), closes [/github.blog/2022-04-12-git-security-vulnerability-announced/#cve-2022-24765](https://github.com/open-sauced//github.blog/2022-04-12-git-security-vulnerability-announced//issues/cve-2022-24765) [#10](https://github.com/open-sauced/release/issues/10)
+
+
+### 🐛 Bug Fixes
+
+* upgrade node 18 in release workflows ([92a2f86](https://github.com/open-sauced/release/commit/92a2f86d6fc2bcdbb3b7148519d390a7f6338e8b))
+
 ### [1.0.3](https://github.com/open-sauced/release/compare/v1.0.2...v1.0.3) (2022-03-12)
 
 
