@@ -140,6 +140,26 @@ if (actionExists) {
   });
 }
 
+const manifestExists = existsSync("./manifest.json");
+if (manifestExists) {
+  addPlugin("@google/semantic-release-replace-plugin", {
+    "replacements": [{
+      "files": [
+        "manifest.json"
+      ],
+      "from": `"version": ".*"`,
+      "to": `"version": "\${nextRelease.version}"`,
+      "results": [{
+        "file": "manifest.json",
+        "hasChanged": true,
+        "numMatches": 1,
+        "numReplacements": 1
+      }],
+      "countMatches": true
+    }]
+  });
+}
+
 addPlugin("@semantic-release/git", {
   "assets": [
     "LICENSE*",
@@ -151,7 +171,8 @@ addPlugin("@semantic-release/git", {
     "pnpm-lock.yaml",
     "public/**/*",
     "supabase/**/*",
-    "action.yml"
+    "action.yml",
+    "manifest.json"
   ],
   "message": `chore(<%= nextRelease.type %>): release <%= nextRelease.version %> <%= nextRelease.channel !== null ? \`on \${nextRelease.channel} channel \` : '' %>[skip ci]\n\n<%= nextRelease.notes %>`
 });
