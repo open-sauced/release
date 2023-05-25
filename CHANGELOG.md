@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.1](https://github.com/open-sauced/release/compare/v2.1.0...v2.1.1) (2023-05-25)
+
+
+### 🐛 Bug Fixes
+
+* bump manifest only on main ([#14](https://github.com/open-sauced/release/issues/14)) ([11bec17](https://github.com/open-sauced/release/commit/11bec17d4d94a3c2f934715ac00abc7141c0f0ba))
+
 ## [2.1.0](https://github.com/open-sauced/release/compare/v2.0.0...v2.1.0) (2023-05-25)
 
 
