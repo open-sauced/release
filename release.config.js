@@ -34,6 +34,7 @@ const noteKeywords = [
 const {
   GITHUB_SHA,
   GITHUB_REPOSITORY,
+  GITHUB_REF,
   GIT_COMMITTER_NAME,
   GIT_COMMITTER_EMAIL,
   GIT_AUTHOR_NAME,
@@ -141,7 +142,7 @@ if (actionExists) {
 }
 
 const manifestExists = existsSync("./manifest.json");
-if (manifestExists) {
+if (manifestExists && GITHUB_REF === "refs/heads/main") {
   addPlugin("@google/semantic-release-replace-plugin", {
     "replacements": [{
       "files": [
