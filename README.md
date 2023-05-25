@@ -182,7 +182,7 @@ If you have an `action.yml` present, our config will attempt to adjust the conta
 
 Unless you have a `manifest.json` present in your root folder, this module is not added to the release config.
 
-If you have a `manifest.json` present, our config will attempt to adjust the `version` value to the newly pushed `npm` and `docker` tags.
+If you have a `manifest.json` present, our config will attempt to adjust the `version` value to the newly pushed `npm` and `docker` tags. This version bump is limited to releases made exclusively on the `main` branch.
 
 ### Docker
 
