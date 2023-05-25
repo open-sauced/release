@@ -178,6 +178,12 @@ Unless you have an `action.yml` present in your root folder, this module is not 
 
 If you have an `action.yml` present, our config will attempt to adjust the container version to the newly pushed `npm` and `docker` tags.
 
+### Manifest.json
+
+Unless you have a `manifest.json` present in your root folder, this module is not added to the release config.
+
+If you have a `manifest.json` present, our config will attempt to adjust the `version` value to the newly pushed `npm` and `docker` tags.
+
 ### Docker
 
 Unless you have a `Dockerfile` present in your root folder, this module is not added to the release config. 
