@@ -172,6 +172,8 @@ Keep one of `files` or `main` keys in your `package.json` accurate depending on 
 
 If you publish, make sure to also provide a valid `NPM_TOKEN` as `.npmrc` authentication is ignored in our config!
 
+To configure the directory for publishing, you have the option to set a path value to `NPM_PACKAGE_ROOT`. By default, it is set to `"."`.
+
 ### GitHub Actions
 
 Unless you have an `action.yml` present in your root folder, this module is not added to the release config.
