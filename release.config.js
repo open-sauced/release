@@ -39,6 +39,7 @@ const {
   GIT_COMMITTER_EMAIL,
   GIT_AUTHOR_NAME,
   GIT_AUTHOR_EMAIL,
+  NPM_PACKAGE_ROOT
 } = process.env;
 const [owner, repo] = String(GITHUB_REPOSITORY).toLowerCase().split("/");
 const addPlugin = (plugin, options) => {
@@ -56,7 +57,7 @@ try {
   authorName && !GIT_AUTHOR_NAME && (process.env.GIT_AUTHOR_NAME = `${authorName}`);
   authorEmail && !GIT_AUTHOR_EMAIL && (process.env.GIT_AUTHOR_EMAIL = `${authorEmail}`);
 } catch (e) {
-  log.warn(`Unable to set GIT_COMMITTER_NAME and GIT_COMMITTER_EMAIL`);
+  log.warn(`Unable to set GIT_AUTHOR_NAME and GIT_AUTHOR_EMAIL`);
   log.error(e);
 }
 
@@ -117,8 +118,10 @@ addPlugin("@semantic-release/changelog", {
 > All notable changes to this project will be documented in this file`
 });
 
+const pkgRoot = NPM_PACKAGE_ROOT || ".";
 addPlugin("@semantic-release/npm", {
-  "tarballDir": "pack"
+  tarballDir: "pack",
+  pkgRoot,
 });
 
 const actionExists = existsSync("./action.yml");
@@ -170,6 +173,11 @@ addPlugin("@semantic-release/git", {
     "npm-shrinkwrap.json",
     "yarn.lock",
     "pnpm-lock.yaml",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/npm-shrinkwrap.json",
+    "**/yarn.lock",
+    "**/pnpm-lock.yaml",
     "public/**/*",
     "supabase/**/*",
     "action.yml",
