@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.2.1](https://github.com/open-sauced/release/compare/v2.2.0...v2.2.1) (2023-08-21)
+
+
+### 🐛 Bug Fixes
+
+* glob pattern ([2f85058](https://github.com/open-sauced/release/commit/2f8505853d3227a8fe31007af243f1b3b88fa1a7))
+
 ## [2.2.0](https://github.com/open-sauced/release/compare/v2.1.1...v2.2.0) (2023-08-21)
 
 
