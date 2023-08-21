@@ -170,6 +170,8 @@ addPlugin("@semantic-release/git", {
     "CHANGELOG.md",
     "package.json",
     "package-lock.json",
+    "**/package.json",
+    "**/package-lock.json",
     "npm-shrinkwrap.json",
     "yarn.lock",
     "pnpm-lock.yaml",
