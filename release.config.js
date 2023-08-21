@@ -164,20 +164,16 @@ if (manifestExists && GITHUB_REF === "refs/heads/main") {
   });
 }
 
+const packageFilesPrefix = process.env.NPM_PACKAGE_ROOT ? `${process.env.NPM_PACKAGE_ROOT}/` : "";
 addPlugin("@semantic-release/git", {
   "assets": [
     "LICENSE*",
     "CHANGELOG.md",
-    "package.json",
-    "package-lock.json",
-    "npm-shrinkwrap.json",
-    "yarn.lock",
-    "pnpm-lock.yaml",
-    "**/package.json",
-    "**/package-lock.json",
-    "**/npm-shrinkwrap.json",
-    "**/yarn.lock",
-    "**/pnpm-lock.yaml",
+    `${packageFilesPrefix}package.json`,
+    `${packageFilesPrefix}package-lock.json`,
+    `${packageFilesPrefix}npm-shrinkwrap.json`,
+    `${packageFilesPrefix}yarn.lock`,
+    `${packageFilesPrefix}pnpm-lock.yaml`,
     "public/**/*",
     "supabase/**/*",
     "action.yml",
