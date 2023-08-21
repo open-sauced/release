@@ -1,0 +1,35 @@
+{
+  "name": "@open-sauced/conventional-commit",
+  "version": "1.0.1",
+  "license": "MIT",
+  "bin": {
+    "conventional-commit": "index.js"
+  },
+  "main": "index.js",
+  "author": "TED Vortex <ted.vortex@gmail.com> (vortex.name)",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "bugs": "https://github.com/open-sauced/conventional-commit/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/open-sauced/conventional-commit.git"
+  },
+  "dependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "scripts": {
+    "push": "npx cz",
+    "semantic-release": "npx semantic-release",
+    "test": "node ."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@open-sauced/check-engines": "^1.1.1",
+    "@open-sauced/semantic-release-conventional-config": "^2.0.4"
+  }
+}

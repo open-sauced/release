@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.2.0](https://github.com/open-sauced/release/compare/v2.1.1...v2.2.0) (2023-08-21)
+
+
+### 📝 Documentation
+
+* NPM_PACKAGE_ROOT README.md ([1d80114](https://github.com/open-sauced/release/commit/1d80114da0d612de9181cce64de77d1ebe10e14c))
+
+
+### 🍕 Features
+
+* bump pkg, pkg-lock subdir ([c2109ee](https://github.com/open-sauced/release/commit/c2109ee68edb5e17a396878f43a3a4ca41c97364))
+* commit npm-shrinkwrap.json ([5ce8e0e](https://github.com/open-sauced/release/commit/5ce8e0e2375e538b7016ea460c86da968492008a))
+* npm package root path ([7048dd6](https://github.com/open-sauced/release/commit/7048dd650ff4a3b6e6938cf73f96d3551c4921ca))
+
 ## [2.1.1](https://github.com/open-sauced/release/compare/v2.1.0...v2.1.1) (2023-05-25)
 
 
