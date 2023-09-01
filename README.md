@@ -160,6 +160,72 @@ Now all you need to do is create a release:
 npx semantic-release
 ```
 
+## 🏗️ GitHub general usage
+
+If you do not plan to publish to `npm` _or_ `ghcr` but still want to cut tags
+and GitHub releases with this system, you can specify `SKIP_NPM_PUBLISH` and
+`SKIP_DOCKER_PUBLISH`. This will still publish releases, generate semver tags,
+and generate GitHub release notes. But it will skip attempting to publish
+
+Then, in a separate GitHub action, you can watch for the releases and upload assets
+manually. For example, when building a Go application:
+
+```yaml
+name: Semantic release
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Semantic release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️  checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "🚀 release"
+        id: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          SKIP_NPM_PUBLISH: true
+          SKIP_DOCKER_PUBLISH: true
+        uses: open-sauced/release@v2
+
+    outputs:
+        release-tag: ${{ steps.semantic-release.outputs.release-tag }}
+
+  build:
+    needs:
+      - release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # release changes require contents write
+
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.21
+
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Build and upload Go binaries
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        go build -o build/my-go-binary
+        gh release upload ${{ needs.release.outputs.release-tag }} build/my-go-binary
+```
+
 ## 🔧 Configuration
 
 See each [plugin](#-plugins) documentation for required installation and configuration steps.

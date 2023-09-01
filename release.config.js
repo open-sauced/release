@@ -118,11 +118,13 @@ addPlugin("@semantic-release/changelog", {
 > All notable changes to this project will be documented in this file`
 });
 
-const pkgRoot = NPM_PACKAGE_ROOT || ".";
-addPlugin("@semantic-release/npm", {
-  tarballDir: "pack",
-  pkgRoot,
-});
+if (process.env.SKIP_NPM_PUBLISH === undefined) {
+  const pkgRoot = NPM_PACKAGE_ROOT || ".";
+  addPlugin("@semantic-release/npm", {
+    tarballDir: "pack",
+    pkgRoot,
+  });
+}
 
 const actionExists = existsSync("./action.yml");
 if (actionExists) {
@@ -164,23 +166,25 @@ if (manifestExists && GITHUB_REF === "refs/heads/main") {
   });
 }
 
-const packageFilesPrefix = process.env.NPM_PACKAGE_ROOT ? `${process.env.NPM_PACKAGE_ROOT}/` : "";
-addPlugin("@semantic-release/git", {
-  "assets": [
-    "LICENSE*",
-    "CHANGELOG.md",
-    `${packageFilesPrefix}package.json`,
-    `${packageFilesPrefix}package-lock.json`,
-    `${packageFilesPrefix}npm-shrinkwrap.json`,
-    `${packageFilesPrefix}yarn.lock`,
-    `${packageFilesPrefix}pnpm-lock.yaml`,
-    "public/**/*",
-    "supabase/**/*",
-    "action.yml",
-    "manifest.json"
-  ],
-  "message": `chore(<%= nextRelease.type %>): release <%= nextRelease.version %> <%= nextRelease.channel !== null ? \`on \${nextRelease.channel} channel \` : '' %>[skip ci]\n\n<%= nextRelease.notes %>`
-});
+if (process.env.SKIP_NPM_PUBLISH === undefined) {
+  const packageFilesPrefix = process.env.NPM_PACKAGE_ROOT ? `${process.env.NPM_PACKAGE_ROOT}/` : "";
+  addPlugin("@semantic-release/git", {
+    "assets": [
+      "LICENSE*",
+      "CHANGELOG.md",
+      `${packageFilesPrefix}package.json`,
+      `${packageFilesPrefix}package-lock.json`,
+      `${packageFilesPrefix}npm-shrinkwrap.json`,
+      `${packageFilesPrefix}yarn.lock`,
+      `${packageFilesPrefix}pnpm-lock.yaml`,
+      "public/**/*",
+      "supabase/**/*",
+      "action.yml",
+      "manifest.json"
+    ],
+    "message": `chore(<%= nextRelease.type %>): release <%= nextRelease.version %> <%= nextRelease.channel !== null ? \`on \${nextRelease.channel} channel \` : '' %>[skip ci]\n\n<%= nextRelease.notes %>`
+  });
+}
 
 addPlugin("@semantic-release/github", {
   "addReleases": "bottom",
@@ -193,7 +197,7 @@ addPlugin("@semantic-release/github", {
 });
 
 const dockerExists = existsSync("./Dockerfile");
-if (dockerExists) {
+if (dockerExists && process.env.SKIP_DOCKER_PUBLISH === undefined) {
   addPlugin("eclass-docker-fork", {
     "baseImageName": `${owner}/${repo}`,
     "registries": [
