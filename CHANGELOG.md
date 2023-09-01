@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0](https://github.com/open-sauced/release/compare/v2.2.1...v2.3.0) (2023-09-01)
+
+
+### 🍕 Features
+
+* Adds SKIP_NPM_PUBLISH and SKIP_DOCKER_PUBLISH ([c89740d](https://github.com/open-sauced/release/commit/c89740d3e2dd9ded886039815c9ec570eb38522d))
+
 ## [2.2.1](https://github.com/open-sauced/release/compare/v2.2.0...v2.2.1) (2023-08-21)
 
 
