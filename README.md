@@ -258,6 +258,12 @@ Unless you have a `Dockerfile` present in your root folder, this module is not a
 
 If you have a `Dockerfile` present, our config will attempt to push to `ghcr.io`.
 
+### CHANGELOG
+
+By default, a `CHANGELOG.md` file is generated and committed to document the changes introduced in releases.
+
+This can be skipped by setting `SKIP_CHANGELOG=true`.
+
 ### Environment variables
 
 Using our configuration comes with some sensible defaults:
