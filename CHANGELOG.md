@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.4.0](https://github.com/open-sauced/release/compare/v2.3.0...v2.4.0) (2023-09-07)
+
+
+### 🍕 Features
+
+* skip changelog gen ([c7b6e33](https://github.com/open-sauced/release/commit/c7b6e33d03c74aafea99cde50bc94e562735e1b6))
+
+
+### 📝 Documentation
+
+* skip changelog README.md ([fd28263](https://github.com/open-sauced/release/commit/fd28263e8dea06d90d83beda117efb5c8941f105))
+
 ## [2.3.0](https://github.com/open-sauced/release/compare/v2.2.1...v2.3.0) (2023-09-01)
 
 
