@@ -4,7 +4,7 @@
 # @open-sauced/release
 
 > [**semantic-release**](https://github.com/semantic-release/semantic-release) shareable config to publish to `npm` and/or `ghcr`.
-> now with alpha and beta pre-releases 
+> now with alpha and beta pre-releases
 
 [![Commits](https://img.shields.io/github/commit-activity/w/open-sauced/release?style=flat)](https://github.com/open-sauced/release/pulse)
 [![Issues](https://img.shields.io/github/issues/open-sauced/release.svg?style=flat)](https://github.com/open-sauced/release/issues)
@@ -34,6 +34,7 @@ This shareable configuration use the following plugins:
 ## 🖥️ Requirements
 
 Most important limitations are:
+
 - `GITHUB_TOKEN` for everything
 - `NPM_TOKEN` for public `npm` library
 - `docker` containers need to be built beforehand
@@ -41,6 +42,7 @@ Most important limitations are:
 You can skip here if you are using elevated [Private Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), however we don't recommend going down that path.
 
 No force push or admin cherries branch protections for the following branches:
+
 - `main` - required
 - `alpha` - optional, pre-release branch
 - `beta` - optional, pre-release branch
@@ -52,7 +54,7 @@ If you use more than the main branch, optionally create an environment that is l
 
 We are using `production` in our examples, if you copy paste them you will find this new environment generated in your settings! 🍕
 
-## 🧪 GitHub actions usage 
+## 🧪 GitHub actions usage
 
 Since version 3 it is possible to use semantic-release without any trace of it or the open-sauced configuration anywhere in the dependency tree.
 
@@ -91,7 +93,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: '♻️ cleanup'
+      - name: "♻️ cleanup"
         run: |
           echo ${{ env.RELEASE_TAG }}
           echo ${{ env.RELEASE_VERSION }}
@@ -132,7 +134,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: '♻️ cleanup'
+      - name: "♻️ cleanup"
         run: |
           echo ${{ steps.semantic-release.outputs.release-tag }}
           echo ${{ steps.semantic-release.outputs.release-version }}
@@ -164,7 +166,9 @@ npx semantic-release
 
 If you do not plan to publish to `npm` _or_ `ghcr` but still want to cut tags
 and GitHub releases with this system, you can specify `SKIP_NPM_PUBLISH` and
-`SKIP_DOCKER_PUBLISH`. This will still publish releases, generate semver tags,
+`SKIP_DOCKER_PUBLISH`. Also, if you want to set up this action in a Github Action repo and do not plan on using Docker, you can specify `SKIP_ACTION_REPLACEMENT` to skip the action replacement step.
+
+This will still publish releases, generate semver tags,
 and generate GitHub release notes. But it will skip attempting to publish
 
 Then, in a separate GitHub action, you can watch for the releases and upload assets
@@ -200,7 +204,7 @@ jobs:
         uses: open-sauced/release@v2
 
     outputs:
-        release-tag: ${{ steps.semantic-release.outputs.release-tag }}
+      release-tag: ${{ steps.semantic-release.outputs.release-tag }}
 
   build:
     needs:
@@ -210,20 +214,20 @@ jobs:
       contents: write # release changes require contents write
 
     steps:
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.21
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
 
-    - name: Check out code
-      uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
 
-    - name: Build and upload Go binaries
-      env:
-        GH_TOKEN: ${{ github.token }}
-      run: |
-        go build -o build/my-go-binary
-        gh release upload ${{ needs.release.outputs.release-tag }} build/my-go-binary
+      - name: Build and upload Go binaries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          go build -o build/my-go-binary
+          gh release upload ${{ needs.release.outputs.release-tag }} build/my-go-binary
 ```
 
 ## 🔧 Configuration
@@ -254,7 +258,7 @@ If you have a `manifest.json` present, our config will attempt to adjust the `ve
 
 ### Docker
 
-Unless you have a `Dockerfile` present in your root folder, this module is not added to the release config. 
+Unless you have a `Dockerfile` present in your root folder, this module is not added to the release config.
 
 If you have a `Dockerfile` present, our config will attempt to push to `ghcr.io`.
 
