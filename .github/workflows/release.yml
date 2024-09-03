@@ -82,7 +82,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: "📂 download docker artifacts"
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: docker
           path: /tmp
